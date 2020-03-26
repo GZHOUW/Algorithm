@@ -19,57 +19,56 @@ nums2 = [3, 4]
 The median is (2 + 3)/2 = 2.5
 '''
 
-class Solution:
-    def findMedianSortedArrays(self, nums1, nums2):
-        pInf = float('inf')
-        nInf = -float('inf')
-        len1 = len(nums1)
-        len2 = len(nums2)
-        if len1 > len2: # make sure nums1 is shorter
-            nums1, nums2, len1, len2 = nums2, nums1, len2, len1
-        if len1 == 0:
-            return (nums2[(len2-1)//2] + nums2[len2//2])/2 # works for both even and odd
-        
-        size = len1 + len2
-        # boundaries of cut1, contain possible cut1 values; later perform binary search within cut1L and cut1R
-        cut1 = 0
-        cut1L = 0
-        cut1R = len1
-        
-        while cut1 <= len1:
-            cut1 = (cut1R - cut1L) // 2 + cut1L # number of elements on the left of the cut
-            # mid position between cut1L and cut1R
-            cut2 = size // 2 - cut1 # ensures that left has same number of elements as right
-            
-            if cut1 == 0:
-                L1 = nInf
-            else:
-                L1 = nums1[cut1 - 1] 
-                
-            if cut1 == len1:
-                R1 = pInf
-            else:
-                R1 = nums1[cut1]
-                
-            if cut2 == 0:
-                L2 = nInf
-            else:
-                L2 = nums2[cut2 - 1]
-            
-            if cut2 == len2:
-                R2 = pInf
-            else:
-                R2 = nums2[cut2]
-            
-            if L1 > R2: # cut should move left
-                cut1R = cut1 - 1 # right boundary is set to the element on the left of the cut
-            elif L2 > R1: # cut should move right
-                cut1L = cut1 + 1
-            else: # L1 <= R2 and L2 <= R1 ---> correct cut
-                if size % 2 == 0: # even
-                    return (max(L1, L2) + min(R1, R2)) / 2
-                else: # odd
-                    return min(R1, R2)
+def findMedianSortedArrays(self, nums1, nums2):
+    pInf = float('inf')
+    nInf = -float('inf')
+    len1 = len(nums1)
+    len2 = len(nums2)
+    if len1 > len2: # make sure nums1 is shorter
+        nums1, nums2, len1, len2 = nums2, nums1, len2, len1
+    if len1 == 0:
+        return (nums2[(len2-1)//2] + nums2[len2//2])/2 # works for both even and odd
+
+    size = len1 + len2
+    # boundaries of cut1, contain possible cut1 values; later perform binary search within cut1L and cut1R
+    cut1 = 0
+    cut1L = 0
+    cut1R = len1
+
+    while cut1 <= len1:
+        cut1 = (cut1R - cut1L) // 2 + cut1L # number of elements on the left of the cut
+        # mid position between cut1L and cut1R
+        cut2 = size // 2 - cut1 # ensures that left has same number of elements as right
+
+        if cut1 == 0:
+            L1 = nInf
+        else:
+            L1 = nums1[cut1 - 1] 
+
+        if cut1 == len1:
+            R1 = pInf
+        else:
+            R1 = nums1[cut1]
+
+        if cut2 == 0:
+            L2 = nInf
+        else:
+            L2 = nums2[cut2 - 1]
+
+        if cut2 == len2:
+            R2 = pInf
+        else:
+            R2 = nums2[cut2]
+
+        if L1 > R2: # cut should move left
+            cut1R = cut1 - 1 # right boundary is set to the element on the left of the cut
+        elif L2 > R1: # cut should move right
+            cut1L = cut1 + 1
+        else: # L1 <= R2 and L2 <= R1 ---> correct cut
+            if size % 2 == 0: # even
+                return (max(L1, L2) + min(R1, R2)) / 2
+            else: # odd
+                return min(R1, R2)
                     
                     
 ''' JAVA Solution
