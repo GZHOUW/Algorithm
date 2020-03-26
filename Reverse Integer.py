@@ -18,27 +18,25 @@ rtype: int
 
 '''
 
-class Solution(object):
-    def reverse(self, x):
-        """
-        :
-        """
-        if x < 0:
-            result = '-'
-            x_str = str(-x)
-        else:
-            result = ''
-            x_str = str(x)
-        n = len(x_str) - 1
-        count_0 = False
-        while n >= 0:
-            if (not count_0) and x_str[n] != 0:
-                result += x_str[n]
-                count_0 = True
-            elif count_0:
-                result += x_str[n]
-            n -= 1
-        if abs(int(result)) > 2147483648:
-            return 0
-        return(int(result))
-        
+def reverse(self, x):
+    """
+    :
+    """
+    if x < 0:
+        result = '-'
+        x_str = str(-x)
+    else:
+        result = ''
+        x_str = str(x)
+    n = len(x_str) - 1
+    count_0 = False
+    while n >= 0:
+        if (not count_0) and x_str[n] != 0:
+            result += x_str[n]
+            count_0 = True
+        elif count_0:
+            result += x_str[n]
+        n -= 1
+    if abs(int(result)) > 2147483648:
+        return 0
+    return(int(result))
