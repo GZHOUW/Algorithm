@@ -11,23 +11,22 @@ Example 2:
 Input: "cbbd"
 Output: "bb"
 '''
-class Solution(object):
-    def longestPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
-        if s == "":
-            return ""
-        l = len(s)
-        while l > 0:
-            start = 0
-            end = l
-            while end <= len(s):
-                substring = s[start:end]
-                if substring == substring[::-1]:
-                    return substring
-                start += 1
-                end += 1
-            l -= 1
-        
+def longestPalindrome(self, s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    if s == "":
+        return ""
+    l = len(s)
+    while l > 0:
+        start = 0
+        end = l
+        while end <= len(s):
+            substring = s[start:end]
+            if substring == substring[::-1]:
+                return substring
+            start += 1
+            end += 1
+        l -= 1
+
