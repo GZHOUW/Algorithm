@@ -12,28 +12,27 @@ type target: int
 rtype: int
 """
 
-class Solution(object):
-    def threeSumClosest(self, nums, target):
+def threeSumClosest(self, nums, target):
 
-        nums.sort()
-        length = len(nums)
-       
-        diff = abs(target - (nums[0] + nums[1] + nums[2]))
-        s_res = nums[0] + nums[1] + nums[2]
+    nums.sort()
+    length = len(nums)
 
-        for a in range(length):
-            b = a + 1
-            c = length - 1
-            while b < c:
-                s = nums[a] + nums[b] + nums[c]
-                diff_i = abs(target - s)
-                if diff_i < diff:
-                    diff = diff_i
-                    s_res = s   
-                if s == target:
-                    return s
-                elif s < target:
-                    b += 1
-                else:
-                    c -= 1
-        return s_res
+    diff = abs(target - (nums[0] + nums[1] + nums[2]))
+    s_res = nums[0] + nums[1] + nums[2]
+
+    for a in range(length):
+        b = a + 1
+        c = length - 1
+        while b < c:
+            s = nums[a] + nums[b] + nums[c]
+            diff_i = abs(target - s)
+            if diff_i < diff:
+                diff = diff_i
+                s_res = s   
+            if s == target:
+                return s
+            elif s < target:
+                b += 1
+            else:
+                c -= 1
+    return s_res
