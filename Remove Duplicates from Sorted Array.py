@@ -23,15 +23,14 @@ type nums: List[int]
 rtype: int
 
 '''
-class Solution(object):
-    def removeDuplicates(self, nums):
+def removeDuplicates(self, nums):
 
-        length = 0
-        idx = 1
-        for i in range(len(nums)):
-            if i > 0 and nums[i] != nums[i-1]: # finds non-duplicate 
-                nums[idx] = nums[i] # add it to the right position
-                idx += 1
-        nums = nums[:idx]
-        return len(nums)
-        
+    length = 0
+    idx = 1
+    for i in range(len(nums)):
+        if i > 0 and nums[i] != nums[i-1]: # finds non-duplicate 
+            nums[idx] = nums[i] # add it to the right position
+            idx += 1
+    nums = nums[:idx]
+    return len(nums)
+
