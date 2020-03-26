@@ -9,22 +9,21 @@ Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
 '''
 
-class Solution(object):
-    def maxArea(self, height):
-        """
-        :type height: List[int]
-        :rtype: int
-        """
-        area_max = 0
-        l_idx = 0
-        r_idx = len(height) - 1
-        
-        while (l_idx < r_idx): # loop ends when r_idx - l_idx = 1
-            area_i = min(height[l_idx], height[r_idx]) * (r_idx - l_idx)
-            area_max = max(area_max, area_i)
-            if height[l_idx] > height[r_idx]: # move the shorter line so that area can may get larger
-                r_idx -= 1
-            else:
-                l_idx += 1
-        return area_max
-                
+def maxArea(self, height):
+    """
+    :type height: List[int]
+    :rtype: int
+    """
+    area_max = 0
+    l_idx = 0
+    r_idx = len(height) - 1
+
+    while (l_idx < r_idx): # loop ends when r_idx - l_idx = 1
+        area_i = min(height[l_idx], height[r_idx]) * (r_idx - l_idx)
+        area_max = max(area_max, area_i)
+        if height[l_idx] > height[r_idx]: # move the shorter line so that area can may get larger
+            r_idx -= 1
+        else:
+            l_idx += 1
+    return area_max
+
