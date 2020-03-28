@@ -1,5 +1,5 @@
 '''
-Given a linked list, remove the n-th node from the end of list and return its head.
+Given a linked list, remove the n-th node from the end of list and return the entire List.
 
 Example:
 
@@ -21,18 +21,18 @@ class ListNode:
     self.val = x
     self.next = None
 
-def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+def removeNthFromEnd(self, List, n):
     size = 0
-    s = head
+    s = List
     sList = []
     while s != None: # one pass!
         sList.append(s)
         s = s.next
         size += 1
     if n == size:
-        return head.next # if size <= 2, sList[size - n - 1] doesnt exist
+        return List.next # if size <= 2, sList[size - n - 1] doesnt exist
     else:
         # let [n-1 to last item].next become [n to last item].next
         # hence the n to last item is gone, for nothing points to it anymore
         sList[size - n - 1].next = sList[size - n].next 
-        return head
+        return List
