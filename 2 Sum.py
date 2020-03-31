@@ -13,12 +13,13 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 """
 
-def twoSum(self, nums, target):
+def twoSum(nums, target):
 
-    complementDict = {} # hash table: key = complement, item = index
+    compDict = {} # hash table: key = complement, item = index
     for i in range(len(nums)):  
-        complement = target - nums[i]
-        if nums[i] in complementDict: # look for key that is equal to ith element
-            return [complementDict[nums[i]], i] # return index (item of dict)
+        num_i = nums[i]
+        complement = target - num_i
+        if num_i in compDict: # if the complement of the ith element is already in compDict
+            return [compDict[num_i], i] # return index (item of dict)
         else:
-            complementDict[complement] = i # add key to dict
+            compDict[complement] = i # add key to dict
