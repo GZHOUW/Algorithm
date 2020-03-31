@@ -21,7 +21,7 @@ class ListNode:
     self.val = x
     self.next = None
 
-def removeNthFromEnd(self, List, n):
+def removeNthFromEnd(List, n):
     size = 0
     s = List
     sList = []
