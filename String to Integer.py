@@ -43,7 +43,7 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
 '''
 
 
-def myAtoi(self, str):
+def myAtoi(str):
   str = str.lstrip() # eliminate front spaces
   # Handles empty string
   if len(str) == 0 or str == None:
