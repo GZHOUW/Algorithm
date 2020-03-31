@@ -25,7 +25,7 @@ Y A   H R
 P     I
 '''
 
-def convert(self, s, numRows):
+def convert(s, numRows):
     """
     :type s: str
     :type numRows: int
