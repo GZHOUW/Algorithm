@@ -17,13 +17,13 @@ A solution set is:
 ]
 '''
 
-def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+def fourSum(nums, target):
     sol = []
     length = len(nums)
     if length < 4:
         return sol
     nums.sort()
-    for a in range(length - 3):  # last three items cannot form a set of four
+    for a in range(length - 3):  # (last) three items cannot form a set of four
         if a > 0 and nums[a] == nums[a - 1]:  # nums[a-1] already tested
             continue
         for b in range(a + 1, length - 2): # start after a
