@@ -44,3 +44,4 @@ def backspaceCompare(S, T):
             T_stack.pop()
 
     return S_stack == T_stack
+ 
