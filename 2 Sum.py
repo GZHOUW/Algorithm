@@ -1,6 +1,5 @@
 """
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
 type nums: List[int]
@@ -14,7 +13,6 @@ return [0, 1].
 """
 
 def twoSum(nums, target):
-
     compDict = {} # hash table: key = complement, item = index
     for i in range(len(nums)):  
         num_i = nums[i]
