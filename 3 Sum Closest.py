@@ -11,7 +11,7 @@ type target: int
 rtype: int
 """
 
-def threeSumClosest(self, nums, target):
+def threeSumClosest(nums, target):
     nums.sort() # sort the array so that binary search can be used
     length = len(nums)
 
