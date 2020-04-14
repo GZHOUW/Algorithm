@@ -1,14 +1,10 @@
 '''
-Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
-
-Note:
-
+Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? 
+Find all unique quadruplets in the array which gives the sum of target.
 The solution set must not contain duplicate quadruplets.
 
 Example:
-
 Given array nums = [1, 0, -1, 0, -2, 2], and target = 0.
-
 A solution set is:
 [
   [-1,  0, 0, 1],
@@ -26,14 +22,16 @@ def fourSum(nums, target):
     for a in range(length - 3):  # (last) three items cannot form a set of four
         if a > 0 and nums[a] == nums[a - 1]:  # nums[a-1] already tested
             continue
-        for b in range(a + 1, length - 2): # start after a
-            if b > a + 1 and nums[b] == nums[b - 1]:  # nums[b-1] already tested
+        for b in range(a + 1, length - 2): # start after a, (last) two items cannot form a set of three
+            if b > a + 1 and nums[b] == nums[b - 1]:  
+                # b is initially at a+1
+                # nums[b-1] already tested
                 continue
             c = b + 1  # left (low) index
             d = length - 1  # right (high) index
-            while c < d:
+            while c < d: # perform linear two-pointer search
                 s = nums[a] + nums[b] + nums[c] + nums[d]
-                if s == target:
+                if s == target: # solution set found
                     sol.append([nums[a], nums[b], nums[c], nums[d]])  # sorted small - large
                     while c < d and nums[c] == nums[c + 1]:  # no need to test c+1 if they are same
                         # c < d is for index error, ex: [0,0,0]
@@ -44,6 +42,6 @@ def fourSum(nums, target):
                     d -= 1
                 elif s < target:  # need to be larger
                     c += 1
-                else:
+                else: # need to be smaller
                     d -= 1
     return sol
