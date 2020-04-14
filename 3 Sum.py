@@ -14,7 +14,7 @@ type nums: List[int]
 rtype: List[List[int]]
 '''
 
-def threeSum(self, nums):
+def threeSum(nums):
     sol = []
     length = len(nums)
     nums.sort()
