@@ -29,7 +29,7 @@ class Solution():
         c = len(self.grid[0])
 
         if r == 1 and c == 1:  # edge case: one element
-            return str(self.grid[r][c])
+            return str(self.grid[0][0])
 
         count = 0
         for i in range(r):
