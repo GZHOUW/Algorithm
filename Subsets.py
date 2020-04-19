@@ -27,12 +27,12 @@ def subsets(nums):
     return solSet
 
 # Recursive Method
-def subsetsR(self, nums):
+def subsetsR(nums):
       res = []
-      self.getSubset(nums, 0, [], res)
+      getSubset(nums, 0, [], res)
       return res
 
-def getSubsetR(self, nums, index, subset, res):
+def getSubsetR(nums, index, subset, res):
     '''
     nums: original list, doesn't change
     index: start from 0, +1 every layer of recursion
@@ -40,4 +40,4 @@ def getSubsetR(self, nums, index, subset, res):
     '''
     res.append(subset)
     for i in range(index, len(nums)):
-        self.getSubset(nums, i+1, subset+[nums[i]], res) # add the current num to each existing subset
+        getSubset(nums, i+1, subset+[nums[i]], res) # add the current num to each existing subset
