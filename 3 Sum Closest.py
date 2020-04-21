@@ -29,7 +29,7 @@ def threeSumClosest(nums, target):
                 res = sum_i   
             if sum_i == target: # 
                 return sum_i
-            elif sum_i < target: # binary search
+            elif sum_i < target:
                 b += 1
             else: # sum_i > target
                 c -= 1
