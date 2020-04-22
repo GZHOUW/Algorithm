@@ -14,7 +14,7 @@ Output: 1
 '''
 
 
-def searchInsert( nums, target):
+def searchInsert(nums, target):
     """
     :type nums: List[int]
     :type target: int
@@ -24,7 +24,7 @@ def searchInsert( nums, target):
     l = 0
     r = len(nums) - 1
 
-    while l + 1< r: # loop runs when there are at least 3 elements
+    while l + 1 < r: # loop runs when there are at least 3 elements
         mid = (r - l) // 2 + l
 
         if nums[mid] == target:
