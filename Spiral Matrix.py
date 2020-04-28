@@ -20,7 +20,7 @@ Input:
 Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 '''
 
-def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+def spiralOrder(matrix):
     res = []
     if len(matrix) == 0:
         return res
