@@ -17,6 +17,7 @@ class Solution:
     def reverseIter(self, head):
         res = None
         while head != None:
+            # remove the first element from head and append it to res
             temp = head # 1 2 3 4 5 None
             head = head.next # 2 3 4 5 None
             temp.next = res # temp = 1 None
