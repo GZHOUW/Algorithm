@@ -32,5 +32,5 @@ def mergeTwoLists(l1, l2):
                     # no need for l1 = l1.next for the same reason, simply copy over
     else:
         p.next = l2
-        
+    
     return merged.next # get rid of the first "0"
