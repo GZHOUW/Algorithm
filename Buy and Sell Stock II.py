@@ -38,7 +38,7 @@ def maxProfit(prices):
             owned = False
     return profit
     '''
-
+    
     # Better solution
     profit = 0
     for i in range(1, len(prices)):
