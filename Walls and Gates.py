@@ -36,6 +36,6 @@ class Solution:
 
     def dfs(self, rooms, r, c, distance):
         for x,y in ((r+1,c), (r, c+1), (r-1, c), (r, c-1)):
-            if 0 <= x < len(rooms) and 0 <= y <= len(rooms[0]) and rooms[x][y] > distance: # check for valid and shorter than existing distance
+            if 0 <= x < len(rooms) and 0 <= y < len(rooms[0]) and rooms[x][y] > distance: # check for valid and shorter than existing distance
                 rooms[x][y] = distance
                 self.dfs(rooms, x, y, distance+1)
