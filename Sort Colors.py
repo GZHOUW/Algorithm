@@ -22,9 +22,9 @@ def sortColors(nums) :
     [0,0,1,1,2,2] front=3, pointer=3, end=3
     """
 
-    front = 0
-    pointer = 0
-    end = len(nums) - 1
+    front = 0 # points at the position where the next 0 is supposed to be
+    pointer = 0 # travels from 0 to end
+    end = len(nums) - 1 # points at the position where the next 2 is supposed to be
 
     while pointer <= end:
         if nums[pointer] == 0: # move to front
