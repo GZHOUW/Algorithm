@@ -22,23 +22,33 @@ Example 2:
   Output: "2314"
 '''
 
-def getPermutation(n, k):
-    numbers = [i for i in range(1, n+1)]
-    permutation = ''
-    k -= 1 # change k into index value instead of 'k th' permutation
-    while n > 0:
-        # there are (n-1)! perms that start with 1, (n-1)! that start with 2, ect.
+class Solution:
+    def getPermutation(self, n, k):
+        '''
+        Demo: n=3, k=5 --> nums = [1,2,3]
+        perms = [1,2,3], [1,3,2], [2,1,3], [2,3,1],   [3,1,2],   [3,2,1]
+                                                     k=5->4(idx)
+        The first 2 (=(n-1)!) perms start with 1, the second 2 perms start with 2, ect
+        idx = 4 // 2 = 2 --> third (n-1)! perms --> [3,1,2] or [3,2,1] --> start with 3 --> append 3 to res
+        
+        '''
+        nums = [i for i in range(1, n+1)]
+        res = ''
+        k -= 1 # change k into index value instead of 'k th' permutation
+        while n > 0:
+            # there are (n-1)! perms that start with 1, (n-1)! that start with 2, ect.
 
-        # Find out which (n-1)! segment k is in --> store in index
-        index, k = divmod(k, math.factorial(n-1)) # quotient and remainder
+            # Find out which (n-1)! segment k is in --> store in index
+            idx = k // math.factorial(n-1)
+            k = k % math.factorial(n-1)
 
-        # get the number that corresponds to index
-        permutation += str(numbers[index])
+            # get the number that corresponds to index
+            res += str(nums[idx])
 
-        # remove handled number
-        numbers.remove(numbers[index])
+            # remove handled number
+            nums.remove(nums[idx])
 
-        # repeat with new number list and new n&k values
-        n -= 1
+            # repeat with new number list and new n&k values
+            n -= 1
 
-    return permutation
+        return res
