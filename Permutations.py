@@ -36,7 +36,7 @@ dfs(nums = [1, 2, 3] , path = [] , result = [] )
 '''
 
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def permute(self, nums):
         res = []
         self.findPerm(res, nums, [])
         return res
