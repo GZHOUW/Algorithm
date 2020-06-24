@@ -16,19 +16,19 @@ Given n = 3, there are a total of 5 unique BST's:
 
 class Solution:
     def numTrees(self, n):
-        '''
-        Demo: numBST[4] = numBST[3] + numBST[1]*numBST[2] + numBST[2]*numBST[1] + numBST[3]
-                          root = 1        root = 2              root = 3          root = 4
-                           3 right     1 left 2 right        2 left 1 right      3 left
-        '''
         numBST = [0 for _ in range(n+1)] # stores number of unique BSTs when n = index
         numBST[0] = 1 # empty tree
         numBST[1] = 1 # only a root
 
         for i in range(2, len(numBST)):
-            for j in range(i): 
-                numBST[i] += numBST[j] * numBST[i-1-j] # i = 3,    j = 0         j = 1        j = 2
-                                                       #         +=T[2]T[0]   +=T[1]T[1]   +=T[0]T[2] 
-                                                       #         (i-1-j)(j)    (i-1-j)(j)   (i-1-j)(j)
+            for j in range(i+1): 
+                '''
+                let j be the root, there can be j-1 nodes on the left of root, and i-j nodes on the right
+                e.g. i = 3, j = 2,  (j-1)=1 on left, (i-j) = 1 on right
+                numBST[j-1] and numBST[i-j] represents the number of possible combinations of BSTs can be constructed by j-1 and i-j nodes respectively
+                Multiply because: Say there are L number of possible unique BSTs on the left side of root and R on the right, 
+                then each possibility of L can correspond to each possibility of R, therefore the total possibility (combination) would be L*R
+                '''
+                numBST[i] += numBST[j-1] * numBST[i-j]
 
         return numBST[n]
