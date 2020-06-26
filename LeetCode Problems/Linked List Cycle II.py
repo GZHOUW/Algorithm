@@ -44,9 +44,15 @@ class Solution:
         
         pointer1 = head
         pointer2 = slow # or fast
-        
-        # increment by 1 from head (pointer1) and pointer2 at the same time, their meeting node is the res
-        # a+b+c+b == 2(a+b) ---> a = c
+        '''
+        increment by 1 from head (pointer1) and pointer2 at the same time, their meeting node is the res
+        distance traveled by slow = a + b
+        distance traveled by fast = a + b + c + b
+        therefore a+b+c+b == 2(a+b) ---> a = c
+        where a = distance between head and start of cycle
+              b = distance between start of cycle and first meeting point
+              c = distance between the first meeting point and start of cycle
+        '''
         while pointer1 != pointer2:
             pointer1 = pointer1.next
             pointer2 = pointer2.next
