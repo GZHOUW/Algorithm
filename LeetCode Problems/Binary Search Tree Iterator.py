@@ -20,33 +20,28 @@ iterator.hasNext(); // return false
 #         self.left = left
 #         self.right = right
 
+
 class BSTIterator:
 
     def __init__(self, root):
-        self.nodeList = [] # an ascending list containing all node vals in the BST
-        self.traverse(root)
-        self.pointer = 0 # the current node
+        self.stack = list()
+        self.pushLeft(root) # start from the smallest
+
+    # @return a boolean, whether we have a next smallest number
+    def hasNext(self):
+        return self.stack
+
+    # @return an integer, the next smallest number
+    def next(self):
+        nextSmallest = self.stack.pop()
+        self.pushLeft(nextSmallest.right) # prepare for next call of next() put the next smallest val at the end of stack
+        return nextSmallest.val
         
-    def traverse(self, node):
-        if not node:
-            return
-        self.traverse(node.left)
-        self.nodeList.append(node.val)
-        self.traverse(node.right)
+    def pushLeft(self, node):
+        while node:
+            self.stack.append(node)
+            node = node.left
 
-    def next(self) -> int:
-        """
-        @return the next smallest number
-        """
-        val = self.nodeList[self.pointer]
-        self.pointer += 1
-        return val
-
-    def hasNext(self) -> bool:
-        """
-        @return whether we have a next smallest number
-        """
-        return self.pointer < len(self.nodeList)
 
 
 # Your BSTIterator object will be instantiated and called as such:
