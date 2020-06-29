@@ -34,18 +34,19 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def kthSmallest(self, root: TreeNode, k: int) -> int:
+    def kthSmallest(self, root, k):
         # in a BST, left node < root < right node, therefore, 
         # inorder traversal of BST is an array sorted in the ascending order.
+        # inorder: go all the way left, append backwards, then go right and append at same time
         
-        inOrderNodes = []
-        
-        self.inOrderTraverse(root, inOrderNodes)
-        return inOrderNodes[k-1] # the k th element from the end (k th smallest)
+        self.inOrderNodes = []
+        self.inOrderTraverse(root)
+        return  self.inOrderNodes[k-1] # the k th element from the front (k th smallest)
     
-    def inOrderTraverse(self, node, inOrderNodes):
+    def inOrderTraverse(self, node):
         if not node:
             return
-        self.inOrderTraverse(node.left, inOrderNodes)
-        inOrderNodes.append(node.val)
-        self.inOrderTraverse(node.right, inOrderNodes)
+        
+        self.inOrderTraverse(node.left)
+        self.inOrderNodes.append(node.val)
+        self.inOrderTraverse(node.right)
