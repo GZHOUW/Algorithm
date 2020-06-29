@@ -31,16 +31,17 @@ class TreeNode:
 
 class Solution:
     def pathSum(self, root, sum):
-        res = []
-        self.dfs(res, root, sum, [])
-        return res
+        self.res = []
+        self.traverse(root, sum, [])
+        return self.res
     
-    def dfs(self, res, node, remain, subset):
-        if node:
-            if (not node.left) and (not node.right) and remain-node.val == 0: # reached leaf node and sum 
-                res.append(subset+[node.val])
-
-            if node.left:
-                self.dfs(res, node.left, remain-node.val, subset+[node.val])
-            if node.right:
-                self.dfs(res, node.right, remain-node.val, subset+[node.val])
+    def traverse(self, node, remain, path):
+        if not node:
+            return 
+        
+        if (not node.left and not node.right) and (remain-node.val == 0): # reached leaf node and sum reached target
+            self.res.append(path+[node.val])
+        if node.left:
+            self.traverse(node.left, remain-node.val, path+[node.val])
+        if node.right:
+            self.traverse(node.right, remain-node.val, path+[node.val])
