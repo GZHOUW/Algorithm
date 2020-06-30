@@ -28,16 +28,21 @@ Input: "{[]}"
 Output: true
 '''
 
-def isValid(s):
-    stack = [] # {[]}() -------> stack: }] pop pop } pop
-    for char in s:           
-        if char == '(':
-            stack.append(')')
-        elif char == '[':
-            stack.append(']')
-        elif char == '{':
-            stack.append('}')
-        else: # char == ), ], or }
-            if  stack == [] or stack.pop() != char: # MUST BE THIS ORDER, else pop first, stack becomes empty
-                return False
-    return stack == []
+class Solution:
+    def isValid(self, s):
+        stack = [] # {[]}() -------> stack: }] pop pop ) pop
+        for char in s:           
+            if char == '(':
+                stack.append(')')
+            elif char == '[':
+                stack.append(']')
+            elif char == '{':
+                stack.append('}')
+            else: # char == ), ], or }
+                if  not stack: # no match, eg: ']'
+                    return False
+                else:
+                    last = stack.pop()
+                    if last != char: # wrong match, eg: '(]'
+                        return False
+        return stack == []
