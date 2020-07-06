@@ -20,18 +20,24 @@ Example 2:
   Note that "cacaca" is incorrect, as the same characters must be together.
 '''
 
-def frequencySort(self, s: str) -> str:
-    freq = dict()
-    res = ""
-    for char in s:
-        if char not in freq:
-            freq[char] = 1
-        else:
-            freq[char] += 1
+class Solution:
+    def frequencySort(self, s):
+        freqDict = dict()
+        res = ""
+        for char in s:
+            if char not in freqDict:
+                freqDict[char] = 1
+            else:
+                freqDict[char] += 1
+        
+        bucket = ['' for _ in range(len(s)+1)]
+        
+        for char, freq in freqDict.items():
+            bucket[freq] += char * freq
+        
+        res = ''
+        
+        for row in reversed(bucket):
+            res += row
 
-    s_list = sorted(freq, key=lambda x: freq[x], reverse = True)
-
-    for char in s_list:
-        res += char * freq[char]
-
-    return res
+        return res
