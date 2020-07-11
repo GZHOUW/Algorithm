@@ -29,13 +29,13 @@ class Solution:
         return self.isSumFound
     
     def checkSum(self, node, remain):
-        if node: 
-            if (node.left is None) and (node.right is None):  # leaf node: has no children
-                if remain - node.val == 0:
-                    self.isSumFound = True
-            if node.left:
-                self.checkSum(node.left, remain-node.val)
-            if node.right:
-                self.checkSum(node.right, remain-node.val)
-        else:
+        if not node: 
             return
+        
+        if not node.left and not node.right:  # leaf node
+            if remain - node.val == 0: # sum found
+                self.isSumFound = True
+        if node.left:
+            self.checkSum(node.left, remain-node.val)
+        if node.right:
+            self.checkSum(node.right, remain-node.val)
