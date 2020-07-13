@@ -12,25 +12,38 @@ class ListNode:
         self.val = x
         self.next = None
 
-def mergeTwoLists(l1, l2):
-    merged = ListNode(0) # always points at the first node
-    p = merged # recure itself
-
-    # stop loop when ONE list is finished
-    while l1 != None and l2 != None:
-        if l1.val <= l2.val:
-            p.next = ListNode(l1.val)
-            l1 = l1.next # move to next l1 value
+class Solution: 
+    def mergeTwoLists(self, l1, l2):
+        merged = ListNode(0) # always points at the first node
+        p = merged # pointer
+        
+        while l1 and l2: # stop loop when a list is finished
+            if l1.val <= l2.val:
+                p.next = ListNode(l1.val)
+                l1 = l1.next # move to next l1 value
+            else:
+                p.next = ListNode(l2.val)
+                l2 = l2.next
+            p = p.next
+        
+        # At this point, either l1.val or l2.val is None
+        if l1 != None:
+            p.next = l1 # the rest of l1 is correctly sorted, simply copy over
         else:
-            p.next = ListNode(l2.val)
-            l2 = l2.next
-        p = p.next
-
-    # At this point, either l1.val or l2.val is None
-    if l1 != None:
-        p.next = l1 # no need to create new node because the rest of l1 is correctly sorted 
-                    # no need for l1 = l1.next for the same reason, simply copy over
-    else:
-        p.next = l2
+            p.next = l2
+        return merged.next # get rid of the first "0"
     
-    return merged.next # get rid of the first "0"
+    # recursive solution
+    def mergeTwoLists(self, l1, l2):
+        if not l1:
+            return l2 # l1 is done, append the rest of l2 to end
+        if not l2:
+            return l1
+        
+        if l1.val < l2.val:
+            l1.next = self.mergeTwoLists(l1.next, l2)
+            return l1
+        else:
+            l2.next = self.mergeTwoLists(l1, l2.next)
+            return l2
+            
