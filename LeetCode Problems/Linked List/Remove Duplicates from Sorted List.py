@@ -10,14 +10,29 @@ Input: 1->1->2->3->3
 Output: 1->2->3
 '''
 
-def deleteDuplicates(head):
-    cur = head
-    while cur: # cur becomes None at last element
-        n = cur.next
-        # move n to n.next until all duplicates are passed
-        while n and n.val == cur.val: # n might become None
-            n = n.next
-        cur.next = n # set cur to n, which is next non-duplicate
-        cur = cur.next
-    return head
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
     
+    def deleteDuplicates(self, head):
+        cur = head
+        while cur and cur.next:
+            if cur.val == cur.next.val: 
+                cur.next = cur.next.next
+            else:
+                cur = cur.next
+        return head
+
+    def deleteDuplicates(self, head):
+        if not head or not head.next:
+            return head
+        
+        head.next = self.deleteDuplicates(head.next)
+        if head.val == head.next.val:
+            return head.next
+        else:
+            return head
