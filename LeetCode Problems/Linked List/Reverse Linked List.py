@@ -14,7 +14,7 @@ class ListNode:
         self.next = None
 
 class Solution:
-    def reverseList(self, head):
+    def reverseList(self, head): # recursion
         if not head or not head.next: # when the end of list is reached by recursion
             return head 
         
@@ -25,4 +25,11 @@ class Solution:
         
         return newHead
     
-   
+    def reverseList(self, head): # iteration
+        prev = None
+        while head:
+            next = head.next
+            head.next = prev
+            prev = head
+            head = next
+        return prev
