@@ -16,17 +16,32 @@ Example 2:
 '''
 
 class Solution:
-    def rob(self, nums[int]):
+    '''
+    robber has two choices: 1.rob cur house 2. not rob cur house
+    1 --> its better to rob cur house than to rob prev house, add cur house value to cur-2 (prev of prev)
+    2 --> its better to rob prev house than cur house, keep prev house
+    '''
+    
+    def rob(self, nums): # O(1) space
+        if not nums:
+            return 0
+        pre1 = 0 # the previous house
+        pre2 = 0 # the house before previous house
+        for i in range(len(nums)):
+            cur = max(pre2 + nums[i], pre1)
+            pre2 = pre1
+            pre1 = cur
+        return cur
+        
+    ''' O(N) space
+    def rob(self, nums):
         if not nums:
             return 0
         dp = [0 for _ in range(len(nums)+1)] # dp[i] stores the max profit at the ith house
         dp[0] = 0 # 0th house (doesnt exist)
         dp[1] = nums[0] # first house
         for i in range(2, len(dp)):
-            '''
-            robber has two choices: 1.rob cur house 2. not rob cur house
-            1 --> its better to rob cur house than to rob prev house, add cur house value to cur-2 (prev of prev)
-            2 --> its better to rob prev house than cur house, keep prev house
-            '''
+            
             dp[i] = max(dp[i-2]+nums[i-1], dp[i-1]) # nums[i-1] --> cur house
         return dp[-1]
+    '''
