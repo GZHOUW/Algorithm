@@ -18,7 +18,7 @@ You can return the answer in any order.
 
 class Solution:
     def topKFrequent(self, nums, k):
-        # = nums = [1,1,1,2,2,3]
+        # nums = [1,1,1,2,2,3]
         freqDict = {} # {1:3, 2:2, 3:1}
         for num in nums:
             if num in freqDict:
@@ -26,16 +26,18 @@ class Solution:
             else:
                 freqDict[num] = 1
                 
-        # idx of bucket is frequency of nums, element is a list of nums that have a frequency of idx
-        # therefore the rightmost non-empty list comtains the most frequent numbers
-        bucket = [[] for _ in range(len(nums)+1)] # max possible freq is len(nums), where all nums are same
-        # [[],[3],[2],[1],[],[],[]]
+        bucket = [[] for _ in range(len(nums)+1)] 
+        '''
+        bucket[i] denotes a list of numbers that have a frequency of i
+        therefore the rightmost non-empty list comtains the most frequent numbers
+        e.g. nums = [1,1,1,2,2,3] ----> [],[3],[2],[1],[],[],[]]
+        '''
         for num, freq in freqDict.items():
             bucket[freq].append(num)
 
         res = []
 
-        for row in reversed(bucket):
+        for row in reversed(bucket): # get the k most frequent numbers
             if not row:
                 continue
             else:
@@ -43,4 +45,3 @@ class Solution:
                     res.append(row[i])
                     if len(res) == k:
                         return res
-        
