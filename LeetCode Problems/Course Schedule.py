@@ -18,30 +18,31 @@ Explanation: There are a total of 2 courses to take.
 
 class Solution:
     def canFinish(self, numCourses, prerequisites):
-        visited = [0 for _ in range(numCourses)]  # 0:not visited 1: visited 2: being visited
-        graph = [[] for _ in range(numCourses)]  # [the nodes that cur node points to]
-
-        for [cur, curPointTo] in prerequisites:
-            graph[cur].append(curPointTo)
-
-        for node in range(numCourses):
-            if not self.dfs(graph, visited, node):
+        self.state = [0 for _ in range(numCourses)] # 0:not visited 1: visited 2: being visited (current tree)
+        
+        self.graph = [[] for _ in range(numCourses)] # graph[i] denotes the list of prereqs of course i
+        for [course, prereq] in prerequisites: 
+            self.graph[course].append(prereq) # [[1,0],[0,2],[2,3],[3,4],[4,2]] --> [[2],[0],[3],[4],[2]]
+        
+        for course in range(numCourses): 
+            if not self.dfs(course):
                 return False
         return True
-
-    def dfs(self, graph, visited, node):
-
-        if visited[node] == 2:  # if cur node is  being visited, a circle is completed, return False
+        
+    def dfs(self, node):
+        # start from a node and look for cycles, i.e. [0,1], [1,2], [2,0]
+        if self.state[node] == 2: # if cur node is marked as being visited, then a cycle is found.
             return False
-
-        if visited[node] == 1:  # if cur is visted, the chain reached an end without completing a circle, return True
+        
+        if self.state[node] == 1: # if cur is visted, it (and its tree) is proven to be valid, return true
             return True
-
-        visited[node] = 2  # mark as being visited; being visited means still in the current dfs tree, or the 'circle'
-
-        for neighbor in graph[node]:
-            if not self.dfs(graph, visited, neighbor):  # visit all the neighbours
+       
+        self.state[node] = 2  # mark as being visited, means still in the current dfs tree, or the 'circle' that is not yet completed
+        
+        for neighbour in self.graph[node]:
+            if not self.dfs(neighbour): # visit all the neighbours
                 return False
-
-        visited[node] = 1  # after visiting all neighbors, mark cur node as visited
+            
+        # At this point, all neighbours of cur node are visites and they are all valid
+        self.state[node] = 1  # mark all nodes in cur tree as visited and return True because they are valid
         return True
