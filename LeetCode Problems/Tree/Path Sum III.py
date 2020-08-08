@@ -5,21 +5,21 @@ The path does not need to start or end at the root or a leaf, but it must go dow
 The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.
 
 Example:
-root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+      root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
 
-      10
-     /  \
-    5   -3
-   / \    \
-  3   2   11
- / \   \
-3  -2   1
+            10
+           /  \
+          5   -3
+         / \    \
+        3   2   11
+       / \   \
+      3  -2   1
 
-Return 3. The paths that sum to 8 are:
+      Return 3. The paths that sum to 8 are:
 
-1.  5 -> 3
-2.  5 -> 2 -> 1
-3. -3 -> 11
+      1.  5 -> 3
+      2.  5 -> 2 -> 1
+      3. -3 -> 11
 '''
 
 # Definition for a binary tree node.
@@ -30,22 +30,25 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def pathSum(self, root: TreeNode, sum: int) -> int:
+    def pathSum(self, root, sum):
         self.nPath = 0
-        self.traverse(root, sum)
+        self.sum = sum
+        self.traverse(root)
         return self.nPath
     
-    def traverse(self, node, sum):
-        if node:
-            self.checkSum(node, sum)
-            self.traverse(node.left, sum)
-            self.traverse(node.right, sum)
+    def traverse(self, node):
+        if not node:
+            return
+        self.checkSum(node, self.sum) # check if there is a path that passes through current node
+        self.traverse(node.left)
+        self.traverse(node.right)
         
-    def checkSum(self, node, remain):
-        if node:
-            if remain - node.val == 0:
-                self.nPath += 1
-            if node.left:
-                self.checkSum(node.left, remain-node.val)
-            if node.right:
-                self.checkSum(node.right, remain-node.val)
+    def checkSum(self, node, remain): 
+        if not node:
+            return
+        if remain - node.val == 0:
+            self.nPath += 1
+        if node.left:
+            self.checkSum(node.left, remain-node.val)
+        if node.right:
+            self.checkSum(node.right, remain-node.val)
