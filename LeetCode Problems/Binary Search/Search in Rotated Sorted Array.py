@@ -15,7 +15,8 @@ Input: nums = [4,5,6,7,0,1,2], target = 3
 Output: -1
 '''
 class Solution:
-    def search(self, nums, target):
+    def search(self, nums, target): # Two pass, intuitive solution, TC = 0(log(n))
+        #Algorithm: find out the partition point, and then search in the correct part (lef tor right)
         if not nums:
             return -1
         l = 0
@@ -50,35 +51,35 @@ class Solution:
                 right = mid - 1
         
         return -1
-'''
-def search(nums, target):
-    length = len(nums)
-    if length == 0:
-        return -1
 
-    l = 0
-    r = length - 1
+    def searchOnePass(self, nums, target): # One pass solution, TC = O(log(n))
+        if not nums:
+            return -1
 
-    while l < r:
-        mid = (r - l)//2 + l # middle position between l and r
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] >= nums[l]: # mid is in left portion (if = , then mid is the leftmost)
-            if nums[mid] >= target and target >= nums[l]: # target is between mid and l
-                r = mid -1 # go left
+        l = 0
+        r = len(nums) - 1
+
+        while l < r:
+            mid = (r - l)//2 + l
+            if nums[mid] == target:
+                return mid
+            
+            if nums[mid] >= nums[l]: 
+                if  nums[l] <= target <= nums[mid]: # target is between mid and l
+                    r = mid -1 # go left
+                else:
+                    l = mid + 1 # go right
             else:
-                l = mid + 1 # go right
-        else: # mid is in right portion
-            if nums[mid] <= target and target <= nums[r]: # target between mid and r
-                l = mid + 1
-            else:
-                r = mid - 1
+                if nums[mid] <= target <= nums[r]: # target between mid and r
+                    l = mid + 1
+                else:
+                    r = mid - 1
 
-    # the loop might not find target, need to check l and r
-    if nums[l] == target:
-        return l
-    elif nums[r] == target:
-        return r
-    else:
+        # the loop might not find target, need to check l and r
+        if nums[l] == target:
+            return l
+        elif nums[r] == target:
+            return r
+        
         return -1
 '''
