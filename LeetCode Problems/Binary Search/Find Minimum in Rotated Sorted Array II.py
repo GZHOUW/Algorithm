@@ -21,6 +21,11 @@ class Solution:
         while left < right:
             mid = left + (right - left) // 2
             
+            '''
+            1: mid is smaller than right
+            2. if mid and right are in the same part, then nums[mid] < nums[right]
+            3. if mid and right are in differnet parts, then nums[mid] > nums[right]
+            '''
             if nums[mid] > nums[right]: # mid is in left segment, right is in right segment
                 left = mid + 1
             
