@@ -38,18 +38,36 @@ class Solutions():
         for i in range(len(string)):
             if string[i] in idxDict and i-idxDict[string[i]] < k: # Duplicate found, start new substring by moving start
                 start = idxDict[string[i]] + 1
-
             idxDict[string[i]] = i
 
             if i - start + 1 == k:
                 subsets.add(string[start:i + 1])
                 start += 1
-
-            print(idxDict)
+            #print(idxDict)
         return list(subsets)
+
+    def slidingWindow(self, string, k):
+        window = set()
+        res = set()
+
+        start = 0
+        cur = 0
+        while cur < len(string):
+            while string[cur] in window:
+                window.remove(string[start])
+                start += 1
+            window.add(string[cur])
+            if len(window) == k:
+                res.add(string[start:cur+1])
+                window.remove(string[start])
+                start += 1
+            cur += 1
+        return list(res)
+    
 s = Solutions()
 l1 = s.distinctCharSubstr("awaglknagawunagwkwagl",4)
 l2 = s.optimized("awaglknagawunagwkwagl",4)
+l3 = s.slidingWindow("awaglknagawunagwkwagl",4)
 print(l1)
 print(l2)
-l1==l2
+print(l3)
