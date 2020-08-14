@@ -21,6 +21,7 @@ Note:
 
 class Solution:
     def subarraysWithKDistinct(self, A, K):
+        # (At most 4 NDI) - (At most 3 NDI) = 4 NDI
         return  self.subarraysWithAtMostKDistinct(A,K) - self.subarraysWithAtMostKDistinct(A, K-1)
     
     
