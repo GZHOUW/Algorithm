@@ -27,7 +27,33 @@ counter.getHits(300);
 // get hits at timestamp 301, should return 3.
 counter.getHits(301); 
 '''
+class Optimized:
+    '''
+    Algorithm:
+    hit: mod current timestamp by 300 to get its index, and check if the current timestamp is already occupyting that idx
+         if so, add one, else, replace that idx with current idx. (its ok to replace previous idx)
+    getHit: go through the array and calculate the diff between timestamps in the array and cur timestamp. If diff<300, add 1 to res
+    '''
+    def __init__(self):
+        self.q = [(0, 0)] * 300
+        
+    def hit(self, timestamp):
+        idx = timestamp % 300
+        time, hit = self.q[idx]
+        if time != timestamp:
+            self.q[idx] = timestamp, 1
+        else:
+            self.q[idx] = time, hit + 1
 
+    def getHits(self, timestamp):
+        ans = 0
+        for i in xrange(0, len(self.q)):
+            time, hit = self.q[i]
+            if timestamp - time < 300:
+                ans += hit
+        return ans
+    
+    
 class HitCounter:
     '''
     Algorithm:
