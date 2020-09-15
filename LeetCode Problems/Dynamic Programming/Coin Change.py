@@ -18,8 +18,8 @@ class Solution:
         dp = [float('inf')] * (amount+1) # dp[i] is the fewest number of coins that can make up amount i
         dp[0] = 0
         
-        for i in range(1, amount+1):
-            for coin in coins:
+        for i in range(1, len(dp)):
+            for coin in coins: # try every coin, see which has min
                 if i - coin >= 0: # a $5 coin cannot make up amount $3
                     dp[i] = min(dp[i], dp[i-coin] + 1) # dp[i-coin] is the fewest number of coins that makes up cur_amount-coin
                     # becasue the amount i-coin plus coin equals cur amount
