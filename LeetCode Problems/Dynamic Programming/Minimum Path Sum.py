@@ -14,7 +14,7 @@ Explanation: Because the path 1→3→1→1→1 minimizes the sum.
 '''
 class Solution():
     '''
-    Algorithm: create in-place dp where dp[r][c] is the min path to arrive at grid[i][c]
+    Algorithm: create in-place dp where dp[r][c] is the min path to arrive at grid[r][c]
     '''
     def minPathSum(self, grid):
         for r in range(len(grid)):
