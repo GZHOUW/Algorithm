@@ -37,6 +37,7 @@ class Solution:
                     room_num = j+1
                     break               
         return room_num
+    
     def minMeetingRoomsHeap(self, intervals):
         '''
         Heap Method: 

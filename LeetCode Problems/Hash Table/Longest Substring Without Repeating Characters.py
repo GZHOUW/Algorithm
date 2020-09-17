@@ -21,8 +21,8 @@ Explanation: The answer is "wke", with the length of 3.
 
 class Solution:
     '''
-    Algorithm: Keep a sliding window *substring) when iterating through the array, and keep a dictionary that contains the last occurence of every element
-               if the cur char has appeared before, set he left boundary as the char after the last occurence of cur char (start a new substring there to
+    Algorithm: Keep a sliding window (substring) when iterating through the array, and keep a dictionary that contains the last occurence of every element.
+               If the cur char has appeared before, set the left boundary as the char after the last occurence of cur char (start a new substring there to
                avoid duplicate)
                update length along the way
     '''

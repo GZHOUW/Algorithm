@@ -20,6 +20,13 @@ Example 3:
 '''
 
 class Solution:
+    '''
+    Algorithm: 
+        keep two dicts d1 and d2
+        key = char, val = a list of index where char occur in string
+        if the vals of d1 and d2 are same, return true
+    
+    '''
     def isIsomorphic(self, s, t):
         d1, d2 = {}, {}
         for i, char in enumerate(s): # 'add' --> {'a':[0], 'd':[1,2]}

@@ -1,5 +1,5 @@
 '''
-Given a string and a string dictionary, find the longest string in the dictionary that can be formed by deleting some characters of the given string. 
+Given a string and a string list, find the longest string in the list that can be formed by deleting some characters of the given string. 
 If there are more than one possible results, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.
 
 Example 1:
@@ -24,7 +24,7 @@ The length of all the strings in the input won't exceed 1,000.
 class Solution:
     def findLongestWord(self, s, d):
         res = ''
-        for word in d: #                   longer result, update    same length but smaller lexicographical order
+        for word in d: #  longer result, update    same length but smaller lexicographical order
             if self.isWordInS(s, word) and (len(word) > len(res) or (len(word) == len(res) and word < res)):
                 res = word
         return res

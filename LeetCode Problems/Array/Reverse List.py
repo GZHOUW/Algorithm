@@ -1,5 +1,5 @@
 '''
-Write a function that reverses a string. The input string is given as an array of characters char[].
+Write a function that reverses a list (represents a string). The input string is given as an array of characters char[].
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 You may assume all the characters consist of printable ascii characters.
 
@@ -13,7 +13,7 @@ Output: ["h","a","n","n","a","H"]
 '''
 
 class Solution:
-    def reverseString(self, s):
+    def reverseList(self, s):
         self.swap(s, 0, len(s) - 1) # start with left = first, right = last
     
     def swap(self, s, left, right):
