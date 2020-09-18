@@ -67,12 +67,12 @@ void dynamicAllocation(){
 int* duplicateArr(const int* arr, int size){
     int* newArr = nullptr;
 
-    //Allocate a new array
+    //Allocate a new array and point newArr to it
     newArr = new int[size];
 
     // Copy elements into newArr
     for (int i = 0; i<size; i++){
-        newArr[i] = arr[i];
+        *newArr[i] = arr[i];
     }
 
     // Return a pointer to the new array
