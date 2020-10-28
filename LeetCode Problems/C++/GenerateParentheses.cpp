@@ -1,3 +1,4 @@
+/*Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.*/
 #include <iostream>
 #include <vector>
 
@@ -17,16 +18,23 @@ public:
         return res;
     }
     
-    void generate(vector<string> &res, int n, string substring, int nL, int nR){
-        if (nL == n && nR == n){
-            res.push_back(substring);
+    void generate(vector<string> &res, int n, string substr, int nL, int nR){
+        /*
+           res: the list of well formed parentheses
+           n: number of pairs
+           substr: current substring that we are working on
+           nL: number of '(' in current substring
+           nR: number of ')' in current substring
+        */
+        if (nL == n && nR == n){ // valid, append
+            res.push_back(substr);
             return;
         }
-        if (nR > nL || nL > n || nR > n){
+        if (nR > nL || nL > n || nR > n){ // invalid, return
             return;
         }
-        generate(res, n, substring+"(", nL+1, nR);
-        generate(res, n, substring+")", nL, nR+1);
+        generate(res, n, substr+"(", nL+1, nR);
+        generate(res, n, substr+")", nL, nR+1);
     }
 };
 
