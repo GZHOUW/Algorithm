@@ -17,10 +17,10 @@ public:
         int cur_area;
         int max_area = 0;
         while (left < right){
-            cur_area = (right - left) * min(height[left], height[right]);
+            cur_area = (right - left) * min(height[left], height[right]); // at least this much amount (contained by leftmost and rightmost)
             max_area = max(max_area, cur_area);
 
-            // keep the longer bar and move the shorter bar inwards
+            // keep the longer bar and move the shorter bar inwards, see if we can get more water
             if (height[left] < height[right]){
                 left ++;
             }
